@@ -1,11 +1,10 @@
 import React from 'react';
 import ArticleCard from './ArticleCard';
-import { blogPosts } from '../data';
 
-const FeaturedArticlesSection = () => {
+const FeaturedArticlesSection = ({ posts }) => {
     //Filter posts for the main layout and sidebar
-    const featuredPosts = blogPosts.filter(p => p.type === 'featured');
-    const trendingPosts = blogPosts.filter(p => p.type === 'trending');
+    const featuredPosts = posts.slice(0, 2);
+    const trendingPosts = posts.filter(p => p.type === 'trending');
 
     return (
         <section className="featured-articles section-header-offset">

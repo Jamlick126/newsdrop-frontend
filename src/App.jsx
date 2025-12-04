@@ -6,7 +6,11 @@ import Footer from './components/Footer.jsx';
 import './App.css'
 
 function App() {
-  // Initialize state
+  // State for blog posts and loading status
+  const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  // Initialize state for theme toggle
   const [isLightMode, setIsLightMode] = useState (
     localStorage.getItem('currentTheme') === 'themeActive'
   );
@@ -28,11 +32,40 @@ function App() {
       localStorage.removeItem('currentTheme');
     }
   };
+  //Data fetching useEffect
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await fetch('api/posts');
+        if (!response.ok) {
+          throw new Error(`HTTP Error! status:${response.status}`);
+        }
+        const data = await response.json();
+        setPosts(data);
+        setIsLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setIsLoading(false);
+      }
+    };
+    fetchPosts();
+  }, []); // empty array to ensure it runs only once on mount
+
+  // New render Logic based on data status
+  if (isLoading) {
+    return <div className="App">Loading Blog Post</div>;
+  }
+  if (error) {
+    return <div className="App"> Error:{error}</div>;
+  }
+
+  const uniqueCategories = [... new Set(posts.map(item => item.category))].map(name => ({ name }));
+
   return (
     <div className="App">
       <Header toggleTheme={toggleTheme} isLightMode={isLightMode}/>,
-      <FeaturedArticlesSection/>
-      <CategoriesSection/>
+      <FeaturedArticlesSection posts={posts}/>
+      <CategoriesSection  categories={uniqueCategories}/>
       <Footer />
     </div>
   );

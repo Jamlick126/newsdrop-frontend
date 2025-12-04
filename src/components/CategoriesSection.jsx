@@ -1,8 +1,7 @@
 import React from 'react';
 import CategoryCard from './CategoryCard';
-import { categories } from '../data';
 
-const CategoriesSection = () => {
+const CategoriesSection = ({ categories}) => {
     return (
         <section className="popular-tags section" id="categories">
             <div className="container">
