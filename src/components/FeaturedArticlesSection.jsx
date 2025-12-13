@@ -3,7 +3,7 @@ import ArticleCard from './ArticleCard';
 
 const FeaturedArticlesSection = ({ posts }) => {
     //Filter posts for the main layout and sidebar
-    const featuredPosts = posts.slice(0, 2);
+    const featuredPosts = posts.slice(0, 3);
     const trendingPosts = posts.filter(p => p.type === 'trending');
 
     return (

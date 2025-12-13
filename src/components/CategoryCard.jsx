@@ -1,11 +1,28 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const CategoryCard = ( { category }) => {
+    let categoryImageUrl = category.imageUrl;
+
+    if (categoryImageUrl && !categoryImageUrl.startsWith('/')) {
+        categoryImageUrl = '/' + categoryImageUrl;
+    }
+
+    if (!categoryImageUrl) {
+        categoryImageUrl = '/img/picsum.photos';
+    }
     return (
-        <a href={`/category/${category.slug}`} className="article">
-            <span className="tag-name">#{category.name}</span>
-            <img src={category.imageUrl} alt={category.name} className="article-image"/>
-        </a>
+        <Link to={`/category/${category.slug}`} className="article category-card-link" >
+            <div className="category-image-box">
+                <img src={category.imageUrl} alt={category.name} 
+                className="article-image"/>
+            </div>
+            <div className="category-data">
+                <span className="tag-name">#{category.name}</span>
+            </div>
+          
+            
+        </Link>
     );
 };
 
