@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Post from '../components/Post';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 const CategoryPage = () => {
     // Get category slug from the url parameters
     const { slug } = useParams();
@@ -14,7 +16,7 @@ const CategoryPage = () => {
             setIsLoading(true);
             setError(null);
             try {
-                const response = await fetch(`http://localhost:4000/api/posts?categorySlug=${slug}`);
+                const response = await fetch(`${API_BASE_URL}/api/posts?categorySlug=${slug}`);
 
                 if(!response.ok) {
                     throw new Error(`HTTP Error! Status: ${response.status}`);

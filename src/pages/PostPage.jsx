@@ -2,6 +2,8 @@ import React, { useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import CommentSection from '../components/CommentSection';
 
+const API_BASE_URL = "https://newsdrop-backend.onrender.com";
+
 const formatContent = (text) => {
     if (!text) return '';
 
@@ -26,7 +28,7 @@ const PostPage = () => {
     useEffect(() => {
         const fetchPost = async () => {
             try {
-               const response = await fetch(`http://localhost:4000/api/posts/${id}`);
+               const response = await fetch(`${API_BASE_URL}/api/posts/${id}`);
                
                if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);

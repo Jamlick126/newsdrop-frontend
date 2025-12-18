@@ -13,6 +13,7 @@ import SignupPage from './pages/SignupPage';
 import ProfilePage from './pages/ProfilePage';
 import './App.css'
 
+const API_BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const AppLayout = ({ isLightMode, toggleTheme }) => {
   const [categories, setCategories] = useState([]);
@@ -20,7 +21,7 @@ const AppLayout = ({ isLightMode, toggleTheme }) => {
   useEffect(() => {
     const fetchCategories = async() => {
       try {
-        const response = await fetch('http://localhost:4000/api/categories');
+        const response = await fetch(`${API_BASE_URL}/api/categories`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }

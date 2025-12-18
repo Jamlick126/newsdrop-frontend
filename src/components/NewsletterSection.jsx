@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 const NewsletterSection = () => {
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
@@ -9,7 +11,7 @@ const NewsletterSection = () => {
         setMessage('Submitting...');
 
         try {
-            const response = await fetch('http:localhost:4000/api/subscribe', {
+            const response = await fetch(`${API_BASE_URL}/api/subscribe`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

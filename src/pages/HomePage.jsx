@@ -6,6 +6,8 @@ import Post from '../components/Post';
 import NewsletterSection from '../components/NewsletterSection';
 //import { useOutletContext } from 'react-router-dom';
 
+const API_BASE_URL = "https://newsdrop-backend.onrender.com";
+
 const HomePage = () => {
     const [posts, setPosts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -16,7 +18,7 @@ const HomePage = () => {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const response = await fetch('http://localhost:4000/api/posts');
+                const response = await fetch(`${API_BASE_URL}/api/posts`);
                 if(!response.ok) throw new Error(`HTTP Error! status:${response.status}`);
                 const data = await response.json();
                 setPosts(data);

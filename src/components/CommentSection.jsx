@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 const CommentSection = ({ postId }) => {
     const { isAuthenticated, user } = useAuth();
     const [comments, setComments] = useState([]);
@@ -9,7 +11,7 @@ const CommentSection = ({ postId }) => {
 
     useEffect(() => {
         const fetchComments = async () => {
-            const res = await fetch(`http://localhost:4000/api/posts/${postId}/comments`);
+            const res = await fetch(`${API_BASE_URL}/api/posts/${postId}/comments`);
             const data = await res.json();
             setComments(data);
         };
@@ -21,7 +23,7 @@ const CommentSection = ({ postId }) => {
         if (!newComment.trim()) return;
 
         try {
-            const response = await fetch(`http://localhost:4000/api/posts/${postId}/comments`, {
+            const response = await fetch(`${API_BASE_URL}/api/posts/${postId}/comments`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${user.token}`,
@@ -44,7 +46,7 @@ const CommentSection = ({ postId }) => {
     if(!window.confirm("Are you sure you want to delete this comment?")) return;
 
     try {
-        const response = await fetch(`http://localhost:4000/api/posts/${postId}/comments/${commentId}`, {
+        const response = await fetch(`${API_BASE_URL}/api/posts/${postId}/comments/${commentId}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${user.token}`,
