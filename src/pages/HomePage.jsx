@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useOutletContext } from 'react-router-dom';
 import FeaturedArticlesSection from '../components/FeaturedArticlesSection';
 import CategoriesSection from '../components/CategoriesSection';
 import Post from '../components/Post';
 import NewsletterSection from '../components/NewsletterSection';
-//import { useOutletContext } from 'react-router-dom';
 
-const API_BASE_URL = "https://newsdrop-backend.onrender.com";
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:10000";
 
 const HomePage = () => {
+    const { categories } = useOutletContext(); 
     const [posts, setPosts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -53,7 +53,6 @@ const HomePage = () => {
         }
     });
 
-    const uniqueCategories = Array.from(categoriesMap.values());
     const olderPosts = posts.slice(2);
 
 
@@ -61,7 +60,12 @@ const HomePage = () => {
         <>
             <FeaturedArticlesSection posts={posts}/>
             <section id="categories-section">
-                <CategoriesSection categories={uniqueCategories}/>
+                {categories && categories.length > 0 ? (
+                    <CategoriesSection categories={categories}/>
+                ): (
+                    <div className="container">Loading Categories...</div>
+                )}
+         
             </section>
             <section id="older-posts" className="older-posts section">
                 <div className="container">

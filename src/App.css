@@ -5,6 +5,7 @@
 :root{
     --light-clr: #fff;
     --light-clr-alt: #afb6cd;
+    --dark-clr: #000;
     --primary-background-clr: #131417;
     --secondary-background-clr: #252830;
     --hover-light-clr: var(--light-clr);
@@ -716,43 +717,32 @@ body.light-theme {
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 500px; /* Control the maximum width of the form elements */
+    max-width: 520px; /* Control the maximum width of the form elements */
     margin: 0 auto;
     gap: 1rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Subtle lift */
     border-radius: 8px;
-    overflow: hidden; /* Helps contain the input and button */
+    overflow: hidden;
+    position: relative; /* Helps contain the input and button */
 }
 
-.newsletter-form input {
-    flex-grow: 1; /* Input takes up maximum available space */
-    padding: 1rem 1.25rem;
-    border: 2px solid #3d3d3d;
+.newsletter-input {
     width: 100%;
-    font-size: 1rem;
-    line-height: 1.5;
+    border: 1px solid var(--transparent-light-clr);
+    background-color: var(--light-clr);
+    color: var(--dark-clr);
+    font-family: var(--font-family);
+    border-radius: 1rem;
+    padding: 1rem;
     outline: none;
-    background-color: #ffffff;
-    color: #333;
-    box-shadow: 0 2px 4px rgba(0,0,0 0.1); /* Remove default browser outline */
+    transition: border-color 0.3s; /* Remove default browser outline */
 }
 
-.newsletter-form input:focus{
+.newsletter-input:focus{
+    border-color: var(--light-clr-alt);
     box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.4);
 }
 
-.newsletter-form button {
-    /* Use your primary button styles for brand consistency */
-    background-color: var(--primary-clr, #007bff); 
-    color: var(--light-clr, #fff);
-    border: none;
-    padding: 1rem 2rem;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    white-space: nowrap; /* Prevent button text from wrapping */
-}
 
 .newsletter-form button:hover {
     background-color: var(--primary-dark-clr, #0056b3); 
@@ -787,6 +777,7 @@ body.light-theme {
 /* --- 5. Message Status --- */
 .subscription-message {
     margin-top: 1.5rem;
+    text-align: center;
     font-size: 1rem;
     font-weight: 600;
 }

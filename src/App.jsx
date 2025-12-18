@@ -13,7 +13,7 @@ import SignupPage from './pages/SignupPage';
 import ProfilePage from './pages/ProfilePage';
 import './App.css'
 
-const API_BASE_URL = import.meta.env.VITE_BASE_URL;
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:10000";
 
 const AppLayout = ({ isLightMode, toggleTheme }) => {
   const [categories, setCategories] = useState([]);
@@ -26,6 +26,7 @@ const AppLayout = ({ isLightMode, toggleTheme }) => {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
+        console.log("Footer data:", data);
         setCategories(data);
       } catch (err) {
         console.error("Failed to fetch categories:", err);
@@ -37,7 +38,7 @@ const AppLayout = ({ isLightMode, toggleTheme }) => {
     <div className="App">
       <Header toggleTheme={toggleTheme} isLightMode={isLightMode}/>
       <main className="section-header-offset">
-        <Outlet/>
+        <Outlet context={{categories}}/>
       </main>
       <Footer categories={categories}/>
 

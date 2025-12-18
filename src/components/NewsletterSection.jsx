@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL;
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:10000";
 
 const NewsletterSection = () => {
     const [email, setEmail] = useState('');
@@ -11,7 +11,7 @@ const NewsletterSection = () => {
         setMessage('Submitting...');
 
         try {
-            const response = await fetch(`${API_BASE_URL}/api/subscribe`, {
+            const response = await fetch(`${API_BASE_URL}/api/subscribers`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -41,15 +41,18 @@ const NewsletterSection = () => {
                     Get the latest analysis and featured posts delivered to your inbox every week. 
                 </p>
                 <form className="newsletter-form" onSubmit={handleSubmit}>
-                    <input 
+                    
+                         <input 
                         type="email" 
                         placeholder="Enter your email address" 
                         required 
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         aria-label="Email address for newsletter signup"
-                    />
-                    <button type="submit" className="btn btn-primary">Subscribe</button>
+                        className="newsletter-input"
+                        />
+                    
+                    <button type="submit" className="btn fancy-border">Subscribe</button>
                 </form>
 
                 {message && <p className={`subscription-message ${message.startsWith('Error') ? 'error': 'success'}`}>{message}</p>}

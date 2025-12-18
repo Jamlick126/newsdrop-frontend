@@ -50,12 +50,15 @@ const Footer = ({ categories = [] }) => {
                  <div>
                     <h6 className="title footer-title">Categories</h6>
                     <ul className="list footer-list categories-list">
-                        {categories.map((category) => (
-                            <li className="list-item" key={category.slug || category.name}>
-                                <Link to={`/category/${category.slug}`} className="list-link">{category.name}</Link>
-                            </li>
-
-                        ))}
+                        {categories && categories.length > 0 ? (
+                            categories.map((category) => (
+                                <li className="list-item" key={category.category_id || category.id ||category.slug}>
+                                    <Link to={`/category/${category.slug}`} className="list-link">{category.name}</Link>
+                                </li>
+                        ))
+                        ): (
+                            <li className="list-item">Loading...</li>
+                        )}
                     </ul>
                 </div>
 
