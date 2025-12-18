@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 
 
 const ArticleCard = ({ post, index}) => {
-    const { title, category, image_url, publishDate, readTime, type, layout, author_username} = post;
+    const { title, category, image_url, publishDate, readTime, type, author_username} = post;
+    const layoutClass = `featured-article-${index + 1}`;
     if (type ==='trending') {
         return (
                 <Link to={`/post/${post.id}`} className="trending-news-box">
@@ -25,7 +26,7 @@ const ArticleCard = ({ post, index}) => {
         );
     }
     return (
-        <Link to={`/post/${post.id}`} className={`article featured-article featured-article-${layout}`}>
+        <Link to={`/post/${post.id}`} className={`article featured-article featured-article ${layoutClass}`}>
             <img src={image_url} alt={title} className="article-image" />
             <span className="article-category">{category.name}</span>
             <div className="article-data-container">

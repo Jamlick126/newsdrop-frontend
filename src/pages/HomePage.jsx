@@ -54,6 +54,7 @@ const HomePage = () => {
     const uniqueCategories = Array.from(categoriesMap.values());
     const olderPosts = posts.slice(2);
 
+
     return (
         <>
             <FeaturedArticlesSection posts={posts}/>

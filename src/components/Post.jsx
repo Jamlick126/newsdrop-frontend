@@ -8,10 +8,12 @@ const Post = ({ postData }) => {
 
     const publishDate = date ? new Date(date).toLocaleDateString() : 'Date Unknown';
     const timeToRead = readTime || '6 min read';
+
+    const safeImageUrl = image_url && !image_url.startsWith('/') ? '/' + image_url : image_url;
     return (
-        <Link to={`post/${id}`} className="article older-posts-article-layout-custom">
+        <Link to={`/post/${id}`} className="article older-posts-article-layout-custom">
           <div className="older-posts-article-image-wrapper">
-            <img src={image_url} alt={title} className="article-image"/>
+            <img src={safeImageUrl} alt={title} className="article-image"/>
             {category && <span className="article-category">{category.name}</span>}
           </div>
           

@@ -4,7 +4,7 @@ import ArticleCard from './ArticleCard';
 const FeaturedArticlesSection = ({ posts }) => {
     //Filter posts for the main layout and sidebar
     const featuredPosts = posts.slice(0, 3);
-    const trendingPosts = posts.filter(p => p.type === 'trending');
+    const trendingPosts = posts.filter(p => p.type === 'trending').slice(0, 5);
 
     return (
         <section className="featured-articles section-header-offset">
@@ -18,8 +18,8 @@ const FeaturedArticlesSection = ({ posts }) => {
                         <span className="headline-description">Apple announces iPhone 17 pro!!</span>
                     </div>
                     {/* Map through featured posts and render ArticleCards */}
-                    {featuredPosts.map((post) => (
-                        <ArticleCard key={post.id} post={post}/>
+                    {featuredPosts.map((post, index) => (
+                        <ArticleCard key={post.id} post={post} index={index}/>
                     ))}
                 </div>
 

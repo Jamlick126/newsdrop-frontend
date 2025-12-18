@@ -1,12 +1,18 @@
 import React, { useState, useEffect} from 'react';
 import { Routes, Route, Outlet } from 'react-router-dom';
+import ProtectedRoute from './components/ProtectedRoute';
 import Header from './components/Header';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
 import PostPage from './pages/PostPage';
 import CategoryPage from './pages/CategoryPage';
-import './App.css'
 import Footer from './components/Footer';
+import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
+import ProfilePage from './pages/ProfilePage';
+import './App.css'
+
 
 const AppLayout = ({ isLightMode, toggleTheme }) => {
   const [categories, setCategories] = useState([]);
@@ -72,15 +78,29 @@ function App() {
         <Route index element={<HomePage/>}/>
         
         {/* Other pages also use the AppLayout */}
-        <Route path="post/:id" element={<PostPage/>}/>
-        <Route path="category/:slug" element={<CategoryPage />} />
-        <Route path="/about" element={<AboutPage/>}/>
+        <Route path="post/:id" 
+               element={<PostPage/>}/>
+        <Route path="category/:slug" 
+               element={
+                <ProtectedRoute>
+                    <CategoryPage />
+                </ProtectedRoute>
+               } />
+        <Route path="about" element={<AboutPage />} />
+        <Route path="contact" element={<ContactPage/>}/>
         {/* Add a catch-all route for 404s if needed */}
         {/* <Route path="*" element={<NotFoundPage />} /> */}
       
       </Route>
+      {/* --- NEW AUTH ROUTES --- */}
+        <Route path="login" element={<LoginPage />} />
+        <Route path="signup" element={<SignupPage />} />
+        <Route path="profile" 
+              element={
+                <ProtectedRoute>
+                  <ProfilePage />
+                </ProtectedRoute>}/>
     </Routes>
-    
   );
 }
 

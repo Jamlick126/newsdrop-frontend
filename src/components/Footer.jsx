@@ -14,17 +14,11 @@ const Footer = ({ categories = [] }) => {
                     </p>
                      <ul className="list social-media">
                         <li className="list-item">
-                            <Link to="#" className="list-link">
-                                <i className="ri-instagram-line"></i>
+                            <Link to="https://github.com/Jamlick126" target="_blank" className="list-link">
+                                <i className="ri-github-fill"></i>
                             </Link>
-                            <Link to="#" className="list-link">
-                                <i className="ri-facebook-circle-line"></i>
-                            </Link>
-                            <Link  to="#" className="list-link">
-                                <i className="ri-twitter-line"></i>
-                            </Link>
-                            <Link to="#" className="list-link">
-                                <i className="ri-pinterest-line"></i>
+                            <Link to="#" className="list-link" target="_blank">
+                                <i className="ri-linkedin-fill"></i>
                             </Link>
                         </li>
                     </ul>
@@ -36,19 +30,19 @@ const Footer = ({ categories = [] }) => {
                     <h6 className="title footer-title">Navigation</h6>
                     <ul className='list footer-list'>
                         <li className='list-item'>
-                            <Link to="#" className='list-link current'>Home</Link>
+                            <Link to="/" className='list-link current'>Home</Link>
                         </li>
                         <li className='list-item'>
-                            <Link to="#" className='list-link current'>Blogs</Link>
+                            <Link to="/#older-posts" className='list-link current'>Blogs</Link>
                         </li>
                         <li className='list-item'>
-                            <Link to="#" className='list-link current'>Categories</Link>
+                            <Link to="/#categories" className='list-link current'>Categories</Link>
                         </li>
                         <li className='list-item'>
-                            <Link to="#" className='list-link current'>Sign In</Link>
+                            <Link to="/about" className='list-link current'>About</Link>
                         </li>
                         <li className='list-item'>
-                            <Link to="#" className='list-link current'>Sign Up</Link>
+                            <Link to="/contact" className='list-link current'>Contact Us</Link>
                         </li>
                     </ul>
                 </div>
@@ -70,9 +64,9 @@ const Footer = ({ categories = [] }) => {
                     <h6 className="title footer-title">Download App</h6>
                     <div className="footer-logo">
                         {/* Link to google playstore though paid add */}
-                        <img src="/assets/playstore.png" alt="Google Play Store" className="footer-image"/>
+                        <img src="/assets/play-store.png" alt="Google Play Store" className="footer-image"/>
                         <p className="footer-image-description">Available</p>
-                        <img src="/assets/appstore.png" alt="Apple Store" className="footer-image"/>
+                        <img src="/assets/app-store.png" alt="Apple Store" className="footer-image"/>
                         <p className="footer-image-description">Coming Soon</p>
                     </div>
                 </div>

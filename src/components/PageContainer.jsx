@@ -11,12 +11,6 @@ const PageContainer = ({ children, title = "NewsDrop Blog"}) => {
 
     return (
         <section className="page-container section">
-            <header className="page-header">
-                <div className="container">
-                    <h1 className="main-page-title">{title.split(' | ')[0]}</h1>
-                </div>
-            </header>
-
             <div className="page-content">
                 <div className="container">{children}</div>
             </div>

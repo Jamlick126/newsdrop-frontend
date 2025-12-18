@@ -1,5 +1,20 @@
 import React, { useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
+import CommentSection from '../components/CommentSection';
+
+const formatContent = (text) => {
+    if (!text) return '';
+
+    let cleanedText = text.replace(/\|/g, '\n\n').replace(/, ->/g, '\n\n');
+
+    const paragraphs = cleanedText.split(/\n\s*\n/g).map((paragraph) =>{
+        const trimmed = paragraph.trim();
+        if (trimmed.length === 0) return '';
+        return `<p>${trimmed}</p>`;
+    }).join('');
+
+    return paragraphs;
+};
 
 const PostPage = () => {
     // Fetch post details using ID
@@ -47,6 +62,9 @@ const PostPage = () => {
 
     const readTime = post.readTime || '6 min read';
 
+    const formattedContent = post.content ? formatContent(post.content): '';
+
+
     return (
         <section className="blog-post section" >
             <div className="container">
@@ -68,17 +86,12 @@ const PostPage = () => {
                         className="post-hero-image"/>}
                
                  <div className="blog-post-container">
-                    <div className="container">
-                        {post.content && <div className="post-content" dangerouslySetInnerHTML={{__html: post.content}}></div> }
+                    
+                        {formattedContent && <div className="post-content" dangerouslySetInnerHTML={{__html: formattedContent}}></div> }
                         
-                        {post.category && (
-                            <div className="tags">
-                                <span className="article-category">#{post.category.name}</span>
-                            </div>
-                        )}
-                    </div>
                 </div>
             </div>
+            <CommentSection postId={id}/>
         </section>
     );
 };
