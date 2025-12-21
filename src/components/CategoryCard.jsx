@@ -14,7 +14,7 @@ const CategoryCard = ( { category }) => {
     return (
         <Link to={`/category/${category.slug}`} className="article category-card-link" >
             <div className="category-image-box">
-                <img src={category.imageUrl} alt={category.name} 
+                <img src={categoryImageUrl} alt={category.name} 
                 className="article-image"/>
             </div>
             <div className="category-data">
