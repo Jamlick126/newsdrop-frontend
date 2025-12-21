@@ -56,7 +56,8 @@ const Header = ({ toggleTheme, isLightMode}) => {
                         <i className="ri-menu-3-line open-menu-icon"></i>
                          <i className="ri-close-line close-menu-icon"></i>
                     </button>
-                    {isAuthenticated ? (
+                    <div className="list-item-buttons">
+                          {isAuthenticated ? (
                         <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem'}}>
                             <Link to="/profile" className="list-link" style={{ textTransform: 'capitalize', fontWeight: 'bold' }}>
                                 {user?.username}
@@ -65,11 +66,14 @@ const Header = ({ toggleTheme, isLightMode}) => {
 
                         </div>   
                          ) : (
-                            <>
+                            <div className="auth-group">
                             <Link to="/login" className="btn fancy-border">Log In</Link>
                             <Link to="/signup" className="btn fancy-border">Sign Up</Link>
-                            </>
+                            </div>
                          )}
+
+                    </div>
+                  
                 </div>
             </nav>
         </header>
