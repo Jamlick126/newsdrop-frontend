@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const CategoryCard = ( { category }) => {
-    let categoryImageUrl = category.imageUrl;
+    let categoryImageUrl = category.imageUrl || category.image_url;
     //Remove /public if it exists
     if (categoryImageUrl && categoryImageUrl.startsWidth('/public')) {
         categoryImageUrl = categoryImageUrl.replace('/public', '');
