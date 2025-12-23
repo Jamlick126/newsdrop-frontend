@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const CategoryCard = ( { category }) => {
     let categoryImageUrl = category.imageUrl || category.image_url;
     //Remove /public if it exists
-    if (categoryImageUrl && categoryImageUrl.startsWidth('/public')) {
+    if (categoryImageUrl && categoryImageUrl.startsWith('/public')) {
         categoryImageUrl = categoryImageUrl.replace('/public', '');
     }
     // Ensure it starts with a single /
@@ -18,7 +18,7 @@ const CategoryCard = ( { category }) => {
     return (
         <Link to={`/category/${category.slug}`} className="article category-card-link" >
             <div className="category-image-box">
-                <img src={`${import.meta.env.VITE_API_URL}${categoryImageUrl}`} alt={category.name} 
+                <img src={categoryImageUrl} alt={category.name} 
                 className="article-image"/>
             </div>
             <div className="category-data">
